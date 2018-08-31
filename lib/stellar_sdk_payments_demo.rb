@@ -1,5 +1,7 @@
 require "stellar_sdk_payments_demo/version"
+require "stellar-sdk"
 
 module StellarSdkPaymentsDemo
-  # Your code goes here...
+  extend ActiveSupport::Autoload
+  autoload :Client
 end
