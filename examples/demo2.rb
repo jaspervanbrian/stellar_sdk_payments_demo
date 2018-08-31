@@ -1,9 +1,9 @@
 require 'stellar_sdk_payments_demo'
 
-# Demo create account
+# Demo payment in lumens
 
 SOURCE_SEED = "SBGWU2LWO3HHLALCREMUDNGYD2Q5R53K26ZBC4PTMGM5LF53MZRC6Q4Y"
 DESTINATION = "GBU532MIR4NIUSOFHMX6QF36NI7V3WEEHDC3JFGY5RDPRCPYZAIUB76W"
-BALANCE = 100;
+AMOUNT = 100;
 
-StellarSdkPaymentsDemo::Client.create_account(SOURCE_SEED, DESTINATION, BALANCE)
+StellarSdkPaymentsDemo::Client.send_payment(SOURCE_SEED, DESTINATION, AMOUNT)
