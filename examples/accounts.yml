@@ -1,0 +1,11 @@
+---
+# Source must be funded already
+# Use https://www.stellar.org/laboratory/#account-creator?network=test
+# These ones in the sample are just randomly generated ones; enough for tests
+# to pass (as long as we're not re-recording)
+source_seed: "SBGWU2LWO3HHLALCREMUDNGYD2Q5R53K26ZBC4PTMGM5LF53MZRC6Q4Y"
+source_address: "GAXUXT32NQXZMDDIOY32CXZER27QAYO3SKRI7MGBO3HRCWFMYZUMTDZV"
+
+# Destination
+# source_seed: "SAWWAPHO2G5YLECAVFGXSRDAUDLCOIBYQSIH56237E2WYPZZZTMLTVDE"
+# source_address: "GDUEG27WOR4QD56KLT3WVWT4PPLPUTPX2KMKPA27DBA43ZV2DH3D5I5D"

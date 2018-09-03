@@ -10,6 +10,10 @@ module StellarSdkPaymentsDemo
       def send_payment(source, destination, amount)
         new().send_payment(source, destination, amount)
       end
+
+      def change_trust(asset_type, asset_code, asset_issuer, destination)
+        new().change_trust(asset_type, asset_code, asset_issuer, destination)
+      end
     end
 
     def initialize
@@ -32,5 +36,13 @@ module StellarSdkPaymentsDemo
       )
     end
 
+    def change_trust(asset_type, asset_code, asset_issuer, destination)
+      asset_type = asset_type.to_sym
+      asset_issuer = Stellar::Account.from_seed(asset_issuer)
+      client.change_trust(
+        asset: [asset_type, asset_code, asset_issuer.keypair],
+        source: Stellar::Account.from_seed(destination),
+      )
+    end
   end
 end
