@@ -7,8 +7,8 @@ module StellarSdkPaymentsDemo
         new().create_account(source, destination, balance)
       end
 
-      def send_payment(source, destination, amount)
-        new().send_payment(source, destination, amount)
+      def send_payment(source, destination, amount, asset = nil, asset_type = nil)
+        new().send_payment(source, destination, amount, asset, asset_type)
       end
 
       def change_trust(asset_type, asset_code, asset_issuer, destination)
@@ -28,11 +28,25 @@ module StellarSdkPaymentsDemo
       )
     end
 
-    def send_payment(source, destination, amount)
+    def send_payment(source, destination, amount, asset = nil, asset_type = nil)
+      source = Stellar::Account.from_seed(source)
+      destination = Stellar::Account.from_address(destination)
+
+      amount = if asset.nil?
+                Stellar::Amount.new(amount)
+              else
+                asset = if asset_type == "alphanum4"
+                          Stellar::Asset.alphanum4(asset, source.keypair) if !asset.nil?
+                        elsif asset_type == "alphanum12"
+                          Stellar::Asset.alphanum12(asset, source.keypair) if !asset.nil?
+                        end
+                Stellar::Amount.new(amount, asset)
+              end
+
       client.send_payment(
-        from:   Stellar::Account.from_seed(source),
-        to:     Stellar::Account.from_address(destination),
-        amount: Stellar::Amount.new(amount)
+        from:   source,
+        to:     destination,
+        amount: amount
       )
     end
 
