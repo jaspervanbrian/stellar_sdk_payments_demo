@@ -47,6 +47,7 @@ GEM
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
+    redis (4.0.2)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -90,6 +91,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   rake (~> 10.0)
+  redis
   rspec (~> 3.0)
   stellar-sdk (>= 0.5.0)
   stellar_sdk_payments_demo!
