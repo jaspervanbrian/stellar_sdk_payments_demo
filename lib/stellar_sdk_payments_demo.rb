@@ -4,4 +4,5 @@ require "stellar-sdk"
 module StellarSdkPaymentsDemo
   extend ActiveSupport::Autoload
   autoload :Client
+  autoload :Pool
 end
