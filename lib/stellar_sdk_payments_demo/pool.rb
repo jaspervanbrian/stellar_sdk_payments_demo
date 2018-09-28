@@ -1,19 +1,24 @@
-require 'redis'
-require 'sidekiq'
-
 module StellarSdkPaymentsDemo
   class Pool
-    include Sidekiq::Worker
-    attr_reader :client
+    attr_reader :redis
     attr_accessor :channel_accounts
+    attr_accessor :pending_jobs
 
     def initialize(accounts = [])
-      @client = Stellar::Client.default_testnet
+      @redis = Redis.new
+
       @channel_accounts = accounts
+      @channel_accounts.define_singleton_method(:unlock) do |account|
+        puts "Finished."
+        self << account
+      end
     end
 
-    def method_missing(method_name, args)
-      client.send(method_name, args)
+    def method_missing(method_name, **payment_options)
+      if !channel_accounts.empty?
+        account = channel_accounts.shift
+        Worker.perform_async(method_name, payment_options)
+      end
     end
   end
 end
