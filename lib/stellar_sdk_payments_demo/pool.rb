@@ -1,5 +1,9 @@
+require 'redis'
+require 'sidekiq'
+
 module StellarSdkPaymentsDemo
   class Pool
+    include Sidekiq::Worker
     attr_reader :client
     attr_accessor :channel_accounts
 

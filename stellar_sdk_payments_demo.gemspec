@@ -37,4 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "stellar-sdk", ">= 0.5.0"
   spec.add_development_dependency "redis"
+  spec.add_development_dependency "sidekiq"
 end

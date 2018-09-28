@@ -1,5 +1,4 @@
 require 'stellar_sdk_payments_demo'
-require 'redis'
 
 first = Stellar::Account.from_seed("SDIJOQWRVNH6H74GY77SV7YIX5HKCVNJJMU2Q56DASUOE7TDBEMHANLF")
 second = Stellar::Account.from_seed("SBM4QWVBFCXVVSWSHXM2WXEBVE435752FXGJ6KGD32CAAQUDTHIC5RND")
