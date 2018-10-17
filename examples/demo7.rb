@@ -1,16 +1,33 @@
 require 'stellar_sdk_payments_demo'
 
-first = Stellar::Account.from_seed("SDIJOQWRVNH6H74GY77SV7YIX5HKCVNJJMU2Q56DASUOE7TDBEMHANLF")
-second = Stellar::Account.from_seed("SBM4QWVBFCXVVSWSHXM2WXEBVE435752FXGJ6KGD32CAAQUDTHIC5RND")
-# third = Stellar::Account.from_seed("SBVULPYPLKNWNYYIPUMUZGAPIORO2RNEZAWMTCRK6ZDKJ24KIOEAVOP2")
-# fourth = Stellar::Account.from_seed("SAYLDTCG4COR74SRRSTRTPUF3XOEAXSWPYUKEGJGP7ZET2NMORBL7QKW")
+first = "SD4IWHHQ5ENER7LAZV5LQQIWY4KZSIQB3W6ZVQHGQXZDH3QYQYZUQBV7"
+# second = "SABEPZQXI5BZGTWFXORQVI6IHNZ7N2QCEILQWWP6QLKYVWCUM3JB3SJG"
+# third = "SACDKOJG2O6L6SLJZ4TT7B3FO5TUZDQH5QY375SSTOTNPDHIVGW4LTYX"
+# fourth = Stellar::Account.from_seed("SBTBD65YWRKA4UBQI3EGNAXBTYJ2GYOJ43NWG6UIACA7H537I2JUSA6M")
 
-channel_accounts = [first, second]
-client = Stellar::Client.default_testnet
-amount = Stellar::Amount.new(100)
+pool = StellarSdkPaymentsDemo::Pool.new([first])
 
-source = Stellar::Account.from_seed("SBXH4SEH32PENMMB66P4TY6LXUIFMRVFUMX2LJC3P2STHICBJLNQJOH5")
-destination = Stellar::Account.from_address("GCIDYJRG5HV4WEESRA4LEKIMXLCU46XIKXGZK4PWX5K23PJIATMWR3UE")
+amount = 100
 
+source = "SBU2HEXULPBFE4SYJJ7UDDU2XB3DDE2SG4WYLA33YUMWFV7FJQWPQUUF"
+destination = "GCKUWZ26L6OLH7L52BUIXUISIQFCT2L4BM5QH2CERSS2LW72MX433J4A"
 
-source = Stellar::Account.from_seed("SDWKVTAM6C2643WFCVS6GZOASWHSKYJZS77CV24ARPZHZXBEFXQW24I3")
+pool.send_payment(
+  source_account:   source,
+  to:               destination,
+  amount:           amount
+)
+
+source = "SCYMUVDFPTT47T7264DIO5UCOQE63KGMHFNMRGTJKJNL6GR5B64T4PD7"
+
+pool.send_payment(
+  source_account:   source,
+  to:               destination,
+  amount:           amount
+)
+
+pool.send_payment(
+  source_account:   source,
+  to:               destination,
+  amount:           amount
+)
